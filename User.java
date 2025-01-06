@@ -45,7 +45,7 @@
     public boolean follows(String name) {
 
         for (int i = 0; i <fCount; i++) {
-            if (follows[i].equals(name)) return true;
+            if (follows[i].equalsIgnoreCase(name)) return true;
         }
         //// Replace the following statement with your code
         return false;
@@ -67,10 +67,10 @@
         boolean found = false;
        
         for (int i=0; i < fCount-1; i++) {
-            if (follows[i].equals(name)) found = true;
+            if (follows[i].equalsIgnoreCase(name)) found = true;
             if (found) follows[i] = follows[i+1];
     }
-        if (follows[fCount-1].equals(name) || found) {
+        if (follows[fCount-1].equalsIgnoreCase(name) || found) {
             fCount--;
             follows[fCount] = null;
             return true;
@@ -94,7 +94,8 @@
     /** Checks is this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
-        return this.follows(other.getName());
+        if (this.follows(other.getName()) && other.follows(this.name)) return true;
+        else return false;
     }
     /** Returns this user's name, and the names that s/he follows. */
     public String toString() {
