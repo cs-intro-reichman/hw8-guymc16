@@ -65,17 +65,21 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         boolean found = false;
+        int count = 0;
        
         for (int i=0; i < fCount; i++) {
-            if (follows[i].equalsIgnoreCase(name)) found = true;
-                 if (found) {
-                    if (i!=9) follows[i] = follows[i+1];
+            if (follows[i].equalsIgnoreCase(name)){
+                 found = true;
+                 break;
+            }
+                 count++;
+            
                  }
                  
-            }
-            
-
-            if (follows[fCount-1].equalsIgnoreCase(name) || found) {
+            if (found) {
+                for (int i=count; i<fCount-1; i++){
+                    follows[i] = follows[i+1];
+                }
                 fCount--;
                 follows[fCount] = null;
                 return true;
