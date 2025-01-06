@@ -66,15 +66,22 @@
     public boolean removeFollowee(String name) {
         boolean found = false;
        
-        for (int i=0; i < fCount-1; i++) {
+        for (int i=0; i < fCount; i++) {
             if (follows[i].equalsIgnoreCase(name)) found = true;
-            if (found) follows[i] = follows[i+1];
-    }
-        if (follows[fCount-1].equalsIgnoreCase(name) || found) {
-            fCount--;
-            follows[fCount] = null;
-            return true;
-        } else return false;
+                 if (found) {
+                    if (i!=9) follows[i] = follows[i+1];
+                 }
+                 
+            }
+            
+
+            if (follows[fCount-1].equalsIgnoreCase(name) || found) {
+                fCount--;
+                follows[fCount] = null;
+                return true;
+            } else return false;
+            
+    
         
     }
 
